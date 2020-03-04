@@ -4,7 +4,7 @@ class BaseConfig(object):
     DEBUG_TB_ENABLED = False
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     TESTING = False
-    FLASK_PORT=5000
+    FLASK_RUN_PORT=5005
 
 class DevelopmentConfig(BaseConfig):
     ''' Development environment specific configuration  '''

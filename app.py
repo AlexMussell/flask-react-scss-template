@@ -5,8 +5,6 @@ from application.models import User
 from flask_sqlalchemy import SQLAlchemy
 
 
-app.config.from_object('application.config.DevelopmentConfig')
-
 migrate = Migrate(app, db)
 
 
