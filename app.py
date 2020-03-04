@@ -1,9 +1,7 @@
 from flask import Flask
-
 from application import db, app
-# from application.models import User
-
 from flask.cli import AppGroup
+
 
 develop = AppGroup('develop')
 
