@@ -1,26 +1,25 @@
 from flask import Flask
-
-from flask_script import Manage
 from flask_migrate import Migrate, MigrateCommand
-from application import app, db
+from application import db, app
 from application.models import User
+from flask_sqlalchemy import SQLAlchemy
 
 
-migrate = Migrate(app, db)
-
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
+app.config.from_object('application.config.DevelopmentConfig')
 
 migrate = Migrate(app, db)
 
-@manager.command
+
+@app.cli.command()
 def create_db():
 	db.create_all()
 
-@manager.command
+@app.cli.command()
 def drop_db():
 	db.drop_all()
 
 
+
+
 if __name__ == "__main__":
-    manager.run()
+    app.run()

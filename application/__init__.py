@@ -4,7 +4,6 @@ from application.main.views import main_blueprint
 
 
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
 
 db = SQLAlchemy(app)
 
