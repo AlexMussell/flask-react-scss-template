@@ -1,11 +1,10 @@
 from flask import Flask
-from flask_migrate import Migrate, MigrateCommand
+
 from application import db, app
-from application.models import User
-from flask_sqlalchemy import SQLAlchemy
+# from application.models import User
+
 from flask.cli import AppGroup
 
-migrate = Migrate(app, db)
 develop = AppGroup('develop')
 
 @develop.command("create-db")
