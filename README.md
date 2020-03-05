@@ -14,8 +14,11 @@ Uses Flask CLI and not manager. Run with `flask run`, create custom commands in 
 
 https://flask-migrate.readthedocs.io/en/latest/   flask migrate
 
-
+## Install NPM packages
+npm install application/templates/static
+sass, webpack, webpack-cli
 
 ## sass
-sass --watch ../public/sass/main.scss example.css
+sass --watch application/templates/public/sass/main.scss application/templates/public/css/example.css
 https://itnext.io/structuring-your-sass-projects-c8d41fa55ed4 for sass structuring
+
