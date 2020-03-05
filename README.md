@@ -1,5 +1,5 @@
 # flask-react-webpack-template
-A barebones skeleton for a Flask, ReactJS, and Webpack frontend stack.
+A bare bones skeleton for a Flask, ReactJS, and Webpack stack.
 
 Under Construction.
 
