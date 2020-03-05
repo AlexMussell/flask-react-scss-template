@@ -4,6 +4,6 @@ main_blueprint = Blueprint('main', __name__)
 
 @main_blueprint.route('/')
 def hello_world():
-    return 'Hello World!'
+    return render_template("index.html")
 
 
