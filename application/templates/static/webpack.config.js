@@ -22,6 +22,11 @@ const config = {
     module: {
         rules: [
             {
+                test: /\.jsx?/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+            },
+            {
                 test: /s(a|c)ss$/,
                 loader: [
                     isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
