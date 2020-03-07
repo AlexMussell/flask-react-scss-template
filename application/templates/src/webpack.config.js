@@ -1,16 +1,18 @@
 const webpack = require('webpack');
 const resolve = require('path').resolve;
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// var HtmlWebpackPlugin = require('html-webpack-plugin');
-const isDevelopment = process.env.NODE_ENV === 'development'
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 const config = {
-    entry: __dirname + '/js/index.jsx',
+    entry: {
+        main: __dirname + '/js/index.jsx'
+    },
     devtool: 'eval-source-map',
     output:{
         path: resolve('../public'),
-        filename: 'js/bundle.js',
-        publicPath: resolve('../public')},
+        filename: '[name].[chunkhash].js'
+    },
     resolve: {
         extensions: ['.js','.jsx','.scss']
     },
@@ -59,12 +61,15 @@ const config = {
             }
         ]
     },
-    // plugins: [
-    //     new HtmlWebpackPlugin({
-    //         hash: true,
-    //         filename: './index.html'
-    //     })
-    // ]
+    plugins: [
+        new HtmlWebpackPlugin({
+            hash: true,
+            inject: false,
+            hash: true,
+            template: './index.html',
+            filename: 'index.html'
+        })
+    ]
 };
 
 module.exports = config;

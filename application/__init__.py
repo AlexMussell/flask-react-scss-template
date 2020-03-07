@@ -5,8 +5,7 @@ from application.main.views import main_blueprint
 
 
 app = Flask(__name__,
- static_folder = './templates/public',
- template_folder="./templates/static")
+ template_folder="./templates/public")
 
 app.config.from_object('application.config.DevelopmentConfig')
 
