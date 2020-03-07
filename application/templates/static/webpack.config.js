@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const resolve = require('path').resolve;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// var HtmlWebpackPlugin = require('html-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV === 'development'
 
 const config = {
@@ -8,7 +9,7 @@ const config = {
     devtool: 'eval-source-map',
     output:{
         path: resolve('../public'),
-        filename: 'bundle.js',
+        filename: 'js/bundle.js',
         publicPath: resolve('../public')},
     resolve: {
         extensions: ['.js','.jsx','.scss']
@@ -27,21 +28,16 @@ const config = {
                 exclude: /node_modules/,
             },
             {
-                test: /s(a|c)ss$/,
+                test: /\.module.(s(a|c)ss)$/,
                 loader: [
                     isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            sourceMap: isDevelopment
-                        }
-                    },
+                    'css-loader',
                     {
                         loader: 'sass-loader',
                         options: {
+                            modules: true,
                             sourceMap: isDevelopment,
-                            // implementation: require('sass')
+                            implementation: require('sass')
                         }
                     }
                 ]
@@ -55,13 +51,20 @@ const config = {
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: isDevelopment
+                            sourceMap: isDevelopment,
+                            implementation: require('sass')
                         }
                     }
                 ]
             }
         ]
-    }
+    },
+    // plugins: [
+    //     new HtmlWebpackPlugin({
+    //         hash: true,
+    //         filename: './index.html'
+    //     })
+    // ]
 };
 
 module.exports = config;
