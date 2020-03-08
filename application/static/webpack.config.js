@@ -10,7 +10,7 @@ const config = {
     },
     devtool: 'eval-source-map',
     output:{
-        path: resolve('../public'),
+        path: __dirname + '/dist',
         filename: '[name].[chunkhash].js'
     },
     resolve: {
@@ -66,8 +66,8 @@ const config = {
             hash: true,
             inject: false,
             hash: true,
-            template: './index.html',
-            filename: 'index.html'
+            template: './index-template.html',
+            filename: '../../templates/index.html'
         })
     ]
 };
