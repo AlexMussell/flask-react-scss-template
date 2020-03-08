@@ -4,9 +4,7 @@ from flask_migrate import Migrate, MigrateCommand
 from application.main.views import main_blueprint
 
 
-app = Flask(__name__,
-    static_folder="./static/dist",
-    template_folder="./templates")
+app = Flask(__name__)
 
 app.config.from_object('application.config.DevelopmentConfig')
 
