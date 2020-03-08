@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const resolve = require('path').resolve;
+// const resolve = require('path').resolve;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -30,23 +30,7 @@ const config = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.module.(s(a|c)ss)$/,
-                loader: [
-                    isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            modules: true,
-                            sourceMap: isDevelopment,
-                            implementation: require('sass')
-                        }
-                    }
-                ]
-            },
-            {
-                test: /\.s(a|c)ss$/,
-                exclude: /\.module.(s(a|c)ss)$/,
+                test: /\scss\/main.s(a|c)ss$/,
                 loader: [
                     isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
