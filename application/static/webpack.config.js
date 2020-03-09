@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const resolve = require('path').resolve;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackMd5Hash = require("webpack-md5-hash");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -12,7 +14,7 @@ const config = {
     devtool: 'eval-source-map',
     output:{
         path: __dirname + '/dist',
-        filename: '[name].[chunkhash].js'
+        filename: '[name].[hash].js'
     },
     resolve: {
         extensions: ['.js','.jsx','.scss']
@@ -26,9 +28,6 @@ const config = {
             },
             {
                 test: /\.s(a|c)ss$/m,
-                // include: [
-                //     resolve(__dirname, '/sass'),
-                // ],
                 use: [
 					{
 						loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -56,9 +55,11 @@ const config = {
             filename: '../../templates/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-            chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
-        })
+            filename: isDevelopment ? '[name].css' : '[name].[contenthash].css',
+            chunkFilename: isDevelopment ? '[id].css' : '[id].[contenthash].css'
+        }),
+        new WebpackMd5Hash(),
+        new CleanWebpackPlugin()
     ]
 };
 
