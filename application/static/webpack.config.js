@@ -1,7 +1,8 @@
 const webpack = require('webpack');
-// const resolve = require('path').resolve;
+const resolve = require('path').resolve;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const config = {
@@ -16,12 +17,6 @@ const config = {
     resolve: {
         extensions: ['.js','.jsx','.scss']
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-            chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
-        })
-    ],
     module: {
         rules: [
             {
@@ -30,17 +25,24 @@ const config = {
                 exclude: /node_modules/,
             },
             {
-                test: /\scss\/main.s(a|c)ss$/,
-                loader: [
-                    isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
+                test: /\.s(a|c)ss$/m,
+                include: [
+                    resolve(__dirname, '/sass'),
+                ],
+                use: [
+					{
+						loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+					},
+					{
+						loader: 'css-loader',
+					},
+					{
                         loader: 'sass-loader',
                         options: {
                             sourceMap: isDevelopment,
                             implementation: require('sass')
                         }
-                    }
+					}
                 ]
             }
         ]
@@ -52,6 +54,10 @@ const config = {
             hash: true,
             template: './index-template.html',
             filename: '../../templates/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: isDevelopment ? '[name].css' : '[name].[hash].css',
+            chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
         })
     ]
 };
