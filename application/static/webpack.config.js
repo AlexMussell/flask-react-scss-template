@@ -55,8 +55,8 @@ const config = {
             filename: '../../templates/index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: isDevelopment ? '[name].css' : '[name].[contenthash].css',
-            chunkFilename: isDevelopment ? '[id].css' : '[id].[contenthash].css'
+            filename: isDevelopment ? '[name].css' : '[name].[hash].css',
+            chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
         }),
         new WebpackMd5Hash(),
         new CleanWebpackPlugin()
