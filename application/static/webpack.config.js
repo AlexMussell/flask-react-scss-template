@@ -14,7 +14,7 @@ const config = {
     devtool: 'eval-source-map',
     output:{
         path: __dirname + '/dist',
-        filename: '[name].[hash].js'
+        filename: '[name].[chunkhash].js'
     },
     resolve: {
         extensions: ['.js','.jsx','.scss']

@@ -6,7 +6,6 @@ class App extends Component {
         return (
             <div>
                 <h1 className={styles.sass}>My React App</h1>
-                console.
             </div>
         )
     }
