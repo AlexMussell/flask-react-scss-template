@@ -5,7 +5,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <h1 className={styles.sass-example}>My React App</h1>
+                <h1 className={styles.sass}>My React App</h1>
             </div>
         )
     }
