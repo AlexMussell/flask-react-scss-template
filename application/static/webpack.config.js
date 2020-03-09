@@ -26,15 +26,15 @@ const config = {
             },
             {
                 test: /\.s(a|c)ss$/m,
-                include: [
-                    resolve(__dirname, '/sass'),
-                ],
+                // include: [
+                //     resolve(__dirname, '/sass'),
+                // ],
                 use: [
 					{
 						loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
 					},
 					{
-						loader: 'css-loader',
+                        loader: 'css-loader',
 					},
 					{
                         loader: 'sass-loader',
