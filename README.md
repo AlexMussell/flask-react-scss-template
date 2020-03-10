@@ -1,4 +1,4 @@
-# flask-react-webpack-template
+# Flask, ReactJS, and SASS Template (inc. Webpack)
 
 Under Construction.
 
