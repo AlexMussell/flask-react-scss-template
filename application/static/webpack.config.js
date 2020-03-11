@@ -28,14 +28,18 @@ const config = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.s(a|c)ss$/,
-                include: resolve(__dirname, 'scss'),
+                test: /\.module\.s(a|c)ss$/,
+                // include: resolve(__dirname, 'scss'),
                 use: [
 					{
 						loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
 					},
 					{
                         loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            sourceMap: isDevelopment
+                        }
 					},
 					{
                         loader: 'sass-loader',
@@ -45,7 +49,26 @@ const config = {
                         }
 					}
                 ]
-            }
+            },
+            // {
+            //     test: /\.s(a|c)ss$/,
+            //     // include: resolve(__dirname, 'scss'),
+            //     use: [
+			// 		{
+			// 			loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+			// 		},
+			// 		{
+            //             loader: 'css-loader',
+			// 		},
+			// 		{
+            //             loader: 'sass-loader',
+            //             options: {
+            //                 sourceMap: isDevelopment,
+            //                 implementation: require('sass')
+            //             }
+			// 		}
+            //     ]
+            // }
         ]
     },
     plugins: [
