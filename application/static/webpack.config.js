@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const resolve = require('path').resolve;
+const join = require('path').join;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require("webpack-md5-hash");
@@ -27,7 +28,8 @@ const config = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.s(a|c)ss$/m,
+                test: /\.s(a|c)ss$/,
+                include: resolve(__dirname, 'scss'),
                 use: [
 					{
 						loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
