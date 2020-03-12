@@ -1,6 +1,6 @@
-# Flask, ReactJS, and SASS Template (inc. Webpack)
+# Flask, ReactJS, and SCSS Template (inc. Webpack)
 
-A bare bones skeleton for a Flask, ReactJS, and SASS development stack. It also includes bundling integration with Webpack, and all the loaders configuered to get your application up and running. These docs will guide you through what is where, how it works, the different loaders and their usage, and how to run the test application.
+A bare bones skeleton for a Flask, ReactJS, and SCSS development stack. It also includes bundling integration with Webpack, and all the loaders configuered to get your application up and running. These docs will guide you through what is where, how it works, the different loaders and their usage, and how to run the test application.
 
 If there is anything you think needs to be addressed/added/updated to this template, please let me know or submit a PR. This repository was set up as I couldn't find a good template to start myself off with. So hopefully it helps some others.
 
