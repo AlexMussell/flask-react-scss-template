@@ -1,6 +1,6 @@
 # Flask, ReactJS, and SCSS Template (inc. Webpack)
 
-A bare bones skeleton for a Flask, ReactJS, and SCSS development stack. It also includes bundling integration with Webpack, and all the loaders configured to get your application up and running. These docs will guide you through what is where, how it works, the different loaders and their usage, and how to run the test application.
+A bare bones skeleton for a Flask, ReactJS, and SCSS development stack. It also includes bundling integration with Webpack, React routing, and all the loaders configured to get your application up and running. These docs will guide you through what is where, how it works, the different loaders and their usage, and how to run the test application.
 
 If there is anything you think needs to be addressed/added/updated to this template, please let me know or submit a PR. This repository was set up as I couldn't find a good template to start myself off with. So hopefully it helps some others.
 
@@ -55,6 +55,9 @@ Install the required node packages with `npm install application/templates/stati
 * [postcss-loader](https://github.com/postcss/postcss-loader): Loader to process CSS with [PostCSS](https://postcss.org/). PostCSS allows for CSS transformations with Javascript. Its configuration imports its own plugins and can be found at `application/static/postcss.config.js`
 * [autoprefixer](https://github.com/postcss/autoprefixer): PostCSS plugin that adds vendor prefixes depending on host browser.
 * [postcss-clean](https://www.npmjs.com/package/postcss-clean): PostCSS plugin CSS minifier that uses [clean-css](https://github.com/jakubpawlowicz/clean-css).
+
+## React
+A brief word on the React installation, we have Flask router routing from our webserver to our application landing pages at `index.html`, once the client is at the application, the routing will be handled via [Reacts routing](https://reacttraining.com/react-router/) components. These routes can be found in `application/static/js/routes.js`
 
 ## TODO
 * Docker
