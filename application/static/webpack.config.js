@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const resolve = require('path').resolve;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require("webpack-md5-hash");
@@ -77,7 +78,7 @@ const config = {
             filename: isDevelopment ? '[name].css' : '[name].[hash].css',
             chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
         }),
-        new StylelintPlugin(),
+        new StylelintPlugin({configFile: resolve(__dirname, 'stylelint.config.js')}),
         new WebpackMd5Hash(),
         new CleanWebpackPlugin()
     ]
