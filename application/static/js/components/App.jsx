@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import styles from '../../app.module'
+import styles from '../../scss/components/app.module'
 
-class App extends Component {
+export default class App extends Component {
     render() {
         return (
             <div>
@@ -10,5 +10,3 @@ class App extends Component {
         )
     }
 }
-
-export default App

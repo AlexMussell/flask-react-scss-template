@@ -1,6 +1,4 @@
 const webpack = require('webpack');
-const resolve = require('path').resolve;
-const join = require('path').join;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require("webpack-md5-hash");
@@ -29,11 +27,8 @@ const config = {
             },
             {
                 test: /\.module\.s(a|c)ss$/,
-                // include: resolve(__dirname, 'scss'),
-                use: [
-					{
-						loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-					},
+                loader: [
+					isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
 					{
                         loader: 'css-loader',
                         options: {
@@ -50,25 +45,21 @@ const config = {
 					}
                 ]
             },
-            // {
-            //     test: /\.s(a|c)ss$/,
-            //     // include: resolve(__dirname, 'scss'),
-            //     use: [
-			// 		{
-			// 			loader: isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
-			// 		},
-			// 		{
-            //             loader: 'css-loader',
-			// 		},
-			// 		{
-            //             loader: 'sass-loader',
-            //             options: {
-            //                 sourceMap: isDevelopment,
-            //                 implementation: require('sass')
-            //             }
-			// 		}
-            //     ]
-            // }
+            {
+                test: /\.s(a|c)ss$/,
+                exclude: /\.module.(s(a|c)ss)$/,
+                loader: [
+					isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+					{
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: isDevelopment,
+                            implementation: require('sass')
+                        }
+					}
+                ]
+            }
         ]
     },
     plugins: [
