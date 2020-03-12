@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require("webpack-md5-hash");
+const StylelintPlugin = require('stylelint-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -22,12 +23,12 @@ const config = {
         rules: [
             {
                 test: /\.jsx?/,
-                loader: 'babel-loader',
+                use: 'babel-loader',
                 exclude: /node_modules/,
             },
             {
                 test: /\.module\.s(a|c)ss$/,
-                loader: [
+                use: [
 					isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
 					{
                         loader: 'css-loader',
@@ -35,7 +36,8 @@ const config = {
                             modules: true,
                             sourceMap: isDevelopment
                         }
-					},
+                    },
+                    'postcss-loader',
 					{
                         loader: 'sass-loader',
                         options: {
@@ -48,9 +50,10 @@ const config = {
             {
                 test: /\.s(a|c)ss$/,
                 exclude: /\.module.(s(a|c)ss)$/,
-                loader: [
+                use: [
 					isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
+                    'postcss-loader',
 					{
                         loader: 'sass-loader',
                         options: {
@@ -74,6 +77,7 @@ const config = {
             filename: isDevelopment ? '[name].css' : '[name].[hash].css',
             chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
         }),
+        new StylelintPlugin(),
         new WebpackMd5Hash(),
         new CleanWebpackPlugin()
     ]
