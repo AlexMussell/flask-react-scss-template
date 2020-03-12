@@ -1,12 +1,8 @@
 # Flask, ReactJS, and SASS Template (inc. Webpack)
 
-Under Construction.
-
-To include: Docker
-
 A bare bones skeleton for a Flask, ReactJS, and SASS development stack. It also includes bundling integration with Webpack, and all the loaders configuered to get your application up and running. These docs will guide you through what is where, how it works, the different loaders and their usage, and how to run the test application.
 
-If there is anything you think can be added/updated to this template, please let me know or submit a PR. This repository was set up as I couldn't find a good template to start myself off with. So hopefully it helps some others.
+If there is anything you think needs to be addressed/added/updated to this template, please let me know or submit a PR. This repository was set up as I couldn't find a good template to start myself off with. So hopefully it helps some others.
 
 ## How to Run
 If you already know what you're doing, first clone the repo, create a virtualenv (I highly recomment [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)), install `requirements.txt` and then run from top of repository:
@@ -36,16 +32,30 @@ When you are ready to write the API for your website, write it in `application, 
 ### List of various Flask resources used in more detail
 
 [Flask Blueprints](https://flask.palletsprojects.com/en/1.0.x/blueprints/)
+
 [Flask Migrate](https://flask-migrate.readthedocs.io/en/latest/)
+
 [Flask CLI](https://flask.palletsprojects.com/en/1.1.x/cli/)
 
+
 ## Install NPM packages
-npm install application/templates/static
+Install the required node packages with `npm install application/templates/static`
 
-## sass
-sass --watch application/templates/public/sass/main.scss application/templates/public/css/example.css
-https://itnext.io/structuring-your-sass-projects-c8d41fa55ed4 for sass structuring
+## Webpack
+"Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. " - [Webpack](https://github.com/webpack/webpack)
 
-https://github.com/postcss/postcss-loader
-https://github.com/postcss/autoprefixer
+### List of loaders and plugins
+* [babel-loader](https://babeljs.io/): The loader for Babel, a transpiler for Javascript that is used to to convert modern JS into backwards compatible versions. We use the ReactJS preset.
+* [css-loader](https://github.com/webpack-contrib/css-loader): Interprest `@import` and `url()` and resolves them.
+* [style-loader](https://github.com/webpack-contrib/style-loader): Injects our CSS into the DOM.
+* [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin): Allows us to generate a landing page template. The main feature is it allows us to reference hashed static files via some built in vars. Check `/application/static/index-tempalte.html`. On `npm run watch`, `index.html` get generated in `/application/templates/` so that flask can serve the application to the client.
+* [mini-css-extract-plugin](https://webpack.js.org/plugins/mini-css-extract-plugin): Extracts CSS into separate files. It creates a CSS file per JS file which contains CSS. It supports On-Demand-Loading of CSS and SourceMaps.
+* [webpack-md5-hash](https://www.npmjs.com/package/webpack-md5-hash): Plugin to replace a standard webpack chunkhash with md5. Solves the issue of updated either `.scss` files or `.js` files and both output `.css` and `js` being regenerated with new hashes.
+* [clean-webpack-plugin](https://github.com/johnagan/clean-webpack-plugin): Clears up `/application/static/dist` on successful build.
+* [stylelint-webpack-plugin](https://github.com/webpack-contrib/stylelint-webpack-plugin): A plugin to lint your SCSS (and CSS). Its config can be found at `application/static/stylelint.config.js`.
+* [postcss-loader](https://github.com/postcss/postcss-loader): Loader to process CSS with [PostCSS](https://postcss.org/). PostCSS allows for CSS transformations with Javascript. Its configuration imports its own plugins and can be found at `application/static/postcss.config.js`
+* [autoprefixer](https://github.com/postcss/autoprefixer): PostCSS plugin that adds vendor prefixes depending on host browser.
+* [postcss-clean](https://www.npmjs.com/package/postcss-clean): PostCSS plugin CSS minifier that uses [clean-css](https://github.com/jakubpawlowicz/clean-css).
 
+## TODO
+* Docker
