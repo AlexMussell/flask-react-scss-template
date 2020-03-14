@@ -34,6 +34,7 @@ Then go to your browser and go to `127.0.0.1` as all traffic is forward to the c
 __BE AWARE__: This is only a development Dockerfile. This runs Flasks development server inside the contianer. If you are wanting to go to production, you should use a more comprehensive webserver.
 
 
+## Notes on the Flask, Webpack, and React
 ### Flask
 [Flask](https://flask.palletsprojects.com/en/1.1.x/quickstart/) is a micro-framework that will be used to route to our React application, and to serve backend API requests when you get to that stage. I won't go into detail about Flask, but give you a quick rundown of features this template uses.
 
@@ -67,7 +68,7 @@ When you are ready to write the API for your website, write it in `application/m
 * [autoprefixer](https://github.com/postcss/autoprefixer): PostCSS plugin that adds vendor prefixes depending on host browser.
 * [postcss-clean](https://www.npmjs.com/package/postcss-clean): PostCSS plugin CSS minifier that uses [clean-css](https://github.com/jakubpawlowicz/clean-css).
 
-## React
+### React
 A brief word on the React installation, we have Flask router routing from our webserver to our application landing pages at `index.html`, once the client is at the application, the routing will be handled via [Reacts routing](https://reacttraining.com/react-router/) components. These routes can be found in `application/static/js/routes.js`
 
 ## To conclude
