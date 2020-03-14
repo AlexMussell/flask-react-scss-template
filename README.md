@@ -4,8 +4,8 @@ A bare bones skeleton for a Flask, ReactJS, and SCSS development stack. It also 
 
 If there is anything you think needs to be addressed/added/updated to this template, please let me know or submit a PR. This repository was set up as I couldn't find a good template to start myself off with. So hopefully it helps some others.
 
-## How to Run
-If you already know what you're doing, first clone the repo, create a virtualenv (I highly recommend [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)), install `requirements.txt` and then run from top of repository:
+## How to run locally
+First clone the repo, create a virtualenv (I highly recommend [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)), install `requirements.txt` and then run from top of repository:
 
 ```
 flask run
@@ -19,8 +19,22 @@ npm run <watch/dev-build/build>
 
 And that's it. Go to `127.0.0.1:<flaskport>` (usually 5000 unless `FLASK_RUN_PORT` set) to see the start of your new project!
 
+Remember, this will install all packages and plugins locally.
 
-## Flask
+## Run via Docker
+If you do not want to install the prerequisite packages and plugins, you can  run and develop through Docker, first login to Dockerhub, the pull the image and run.
+
+```
+docker login --username <username>
+docker container run --detach --publish 80:5000 alexmussell/flask-template:1.0.0
+```
+
+Then go to your browser and go to `127.0.0.1` as all traffic is forward to the container from 80 to 5000 (the default Flask port). 
+
+__BE AWARE__: This is only a development Dockerfile. This runs Flasks development server inside the contianer. If you are wanting to go to production, you should use a more comprehensive webserver.
+
+
+### Flask
 [Flask](https://flask.palletsprojects.com/en/1.1.x/quickstart/) is a micro-framework that will be used to route to our React application, and to serve backend API requests when you get to that stage. I won't go into detail about Flask, but give you a quick rundown of features this template uses.
 
 The template uses Flask CLI and not the now deprecated manager to manage the running of Flask, and can be run with `flask run`. There are some custom commands added to `app.py` that enable us to manage our server locally and create an SQLITE3 database for local testing. To create this database, first initialise it with `flask db init`, then create the database with the custom command `flask develop create-db` (this will create a db with the `application/models.py` schema), the db will be written to disk at `$HOME/dev.sqlite`. For this skeleton, there is no route that POSTs to the DB. It's just there as to give you an understanding on how use the Flask CLI to configure your environment.
@@ -29,7 +43,7 @@ Configurations for your base class BaseConfig and its DevelopmentConfig subclass
 
 When you are ready to write the API for your website, write it in `application/main/views.py`.
 
-### List of various Flask resources used in more detail
+#### List of various Flask resources used in more detail
 
 * [Flask Blueprints](https://flask.palletsprojects.com/en/1.0.x/blueprints/)
 * [Flask SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
@@ -37,13 +51,10 @@ When you are ready to write the API for your website, write it in `application/m
 * [Flask CLI](https://flask.palletsprojects.com/en/1.1.x/cli/)
 
 
-## Install NPM packages
-Install the required node packages with `npm install application/templates/static`
-
-## Webpack
+### Webpack
 "Webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging just about any resource or asset. " - [Webpack](https://github.com/webpack/webpack)
 
-### List of loaders and plugins
+#### List of Webpack loaders and plugins
 * [babel-loader](https://babeljs.io/): The loader for Babel, a transpiler for Javascript that is used to to convert modern JS into backwards compatible versions. For React, we will be using the ReactJS preset.
 * [css-loader](https://github.com/webpack-contrib/css-loader): Interprets `@import` and `url()` and resolves them.
 * [style-loader](https://github.com/webpack-contrib/style-loader): Injects our CSS into the DOM.
@@ -59,5 +70,5 @@ Install the required node packages with `npm install application/templates/stati
 ## React
 A brief word on the React installation, we have Flask router routing from our webserver to our application landing pages at `index.html`, once the client is at the application, the routing will be handled via [Reacts routing](https://reacttraining.com/react-router/) components. These routes can be found in `application/static/js/routes.js`
 
-## TODO
-* Docker
+## To conclude
+Hopefully this gives you a good start towards your new application. If there is anything you think is missing, or think can be developed further, please leave an issue or a PR!
